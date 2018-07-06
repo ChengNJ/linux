@@ -6,7 +6,6 @@ cd /opt/face
 vi Dockerfile
 3、按i进入编辑模式，输入的构建镜像内容为
 
-# Version: 0.0.1
 FROM ubuntu:14.04
 
 MAINTAINER AI-TENSOR wujy "337455685@qq.com" 2018-07-06
