@@ -1,0 +1,15 @@
+1、为docker增加一个新的配置vi /etc/yum.repos.d/docker.repo  配置清华镜像源，内容如下
+
+[dockerrepo]
+name=Docker Repository
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/docker/yum/repo/centos7
+enabled=1
+gpgcheck=1
+gpgkey=https://mirrors.tuna.tsinghua.edu.cn/docker/yum/gpg
+
+
+2、执行yum makecache，重新建立元数据缓存
+3、当显示元数据缓存已建立，执行yum install docker-engine 开始安装docker
+4、安装过程中遇见Is this ok [y/d/N] 、是否继续[y/N],都输入y，并按enter
+5、当显示完毕的时候，执行docker info,出现docker的相关信息的，说明docker在本台机子的安装已经完成
+6、启动docker  执行 service docker start
