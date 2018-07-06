@@ -12,4 +12,10 @@ gpgkey=https://mirrors.tuna.tsinghua.edu.cn/docker/yum/gpg
 3、当显示元数据缓存已建立，执行yum install docker-engine 开始安装docker
 4、安装过程中遇见Is this ok [y/d/N] 、是否继续[y/N],都输入y，并按enter
 5、当显示完毕的时候，执行docker info,出现docker的相关信息的，说明docker在本台机子的安装已经完成
-6、启动docker  执行 service docker start
+6、加速docker的镜像拉取速度，我们进行配置为了永久性保留更改，可以修改 /etc/docker/daemon.json 文件并添加上 registry-mirrors 键值。
+  执行vi /etc/docker/daemon.json  加入的内容如下
+  {
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+  }
+
+7、启动docker  执行 service docker start
