@@ -1,0 +1,24 @@
+1	通过ctrl+alt+t调出命令行工具，执行cd  /home/softwares将工作目录切换到/home/softwares目录
+2	执行sudo dpkg -i jdk1.8_1.8.0171-1_amd64.deb,进行安装jdk，jdk默认安装在/usr/java下  这个/usr/java/jdk1.8.0_171-amd64路径就是你的java路径
+3	修改环境变量，执行sudo vim ~/.bashrc,在文件的末尾追加下面内容
+#set oracle jdk environment
+#下面的地址替换成步骤2中的java路径
+export JAVA_HOME=/usr/java/jdk1.8.0_171-amd64 
+export JRE_HOME=${JAVA_HOME}/jre 
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib 
+export PATH=${JAVA_HOME}/bin:$PATH
+复制追加到文件末尾后，按esc键，输入:wq（包括冒号） 按enter，保存并退出文档编辑。并通过执行source ~/.bashrc 使环境变量马上生效。
+4	设置系统默认jdk版本(将红色部分替换成步骤2中的java路径)
+sudo update-alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_171-amd64/bin/java 300 
+
+sudo update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_171-amd64/bin/javac 300 
+
+sudo update-alternatives --install /usr/bin/jar jar /usr/java/jdk1.8.0_171-amd64/bin/jar 300 
+
+sudo update-alternatives --install /usr/bin/javah javah /usr/java/jdk1.8.0_171-amd64/bin/javah 300 
+
+sudo update-alternatives --install /usr/bin/javap javap /usr/java/jdk1.8.0_171-amd64/bin/javap 300
+
+5	执行sudo update-alternatives --config java，如果是初次安装jdk，会有以下提示。
+ 
+6	测试jdk是否安装成功，执行java –version,如果出现以下信息，说明安装成功
