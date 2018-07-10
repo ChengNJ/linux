@@ -1,0 +1,28 @@
+6.1	安装nginx
+Ubuntu默认的源中就有Nginx，所以安装是比较简单的。
+首先，更新apt源，以便软件是最新的，然后就可以安装nginx:
+sudo apt-get  update
+sudo apt-get  install nginx
+6.2	配置防火墙
+开始测试Nginx前，我们需要配置防火墙，以便允许外界访问nginx服务。Nginx在安装的时候使用ufw注册自己作为一个服务，这样对nginx的访问就会变得很容易。
+显示所有ufw应用的配置：
+sudo ufw app list
+你可以得到一个配置的输出列表：
+我们可以看到，有三个Nginx的配置：
+Nginx Full: 这个配置打开 80端口和443端口
+Nginx HTTP: 这个配置只打开80 (普通, 未加密通信)
+Nginx HTTPS: 这个配置只打开 443 (TLS/SSL 加密通信 )
+一般来说我们应该配置最严的限制，因为本文我们还没有配置SSL，所以我们只打开80端口。
+我们执行：
+	sudo ufw allow  ‘Nginx HTTP’
+验证修改状态：
+	sudo ufw status
+可以看到HTTP已经被打开
+
+6.3	检查webserver
+在安装nginx后，ubuntu会自动启动Nginx，用systemctl检查运行状态
+也可以通过访问web网页进行验证
+通过以下命令获取ip
+有了IP后，在浏览器输入
+hhtp://server_domain_or_IP
+你就能看到Nginx的默认加载页
