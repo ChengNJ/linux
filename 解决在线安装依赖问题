@@ -1,0 +1,3 @@
+出现 java-conmon  oracle-java8-set-default 等的不能安装的解决方案为
+sudo apt-get clean
+sudo apt-get -f install
