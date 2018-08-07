@@ -1,0 +1,16 @@
+来自 http://www.cnblogs.com/CloudMan6/p/7770916.html
+
+安装 ELK 套件
+
+ELK 的部署方案可以非常灵活，在规模较大的生产系统中，ELK 有自己的集群，实现了高可用和负载均衡。我们的目标是在最短的时间内学习并实践 ELK，因此将采用最小部署方案：在容器中搭建 ELK。
+
+docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+
+我们使用的是 sebp/elk 这个现成的 image，里面已经包含了整个 ELK stack。容器启动后 ELK 各组件将分别监听如下端口：
+5601 - Kibana web 接口
+9200 - Elasticsearch JSON 接口
+5044 - Logstash 日志接收接口
+先访问一下 Kibana http://[Host IP]:5601/ 看看效果。
+当前 Kibana 没有可显示的数据，因为当前 Elasticsearch 还没有任何日志数据。
+访问一下 Elasticsearch 的 JSON 接口 http://[Host IP]:9200/_search?pretty
+确实，目前 Elasticsearch 没有与日志相关的 index。
