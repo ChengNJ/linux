@@ -1,0 +1,31 @@
+这里我们使用Jenkins的官方提供的软件仓库，要使用官方的软件仓库之前必须将软件仓库的秘钥添加到本地
+#添加官方软件仓库的秘钥到本地的apt秘钥中
+$ wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+将官方提供的软件仓库地址加入到本地的apt软件源中，本地用于存放软件源的文件在/etc/apt/sources.list
+#将地址添加进本地的软件源列表
+$ deb https://pkg.jenkins.io/debian-stable binary/
+
+更新我们本地的软件源缓存，然后直接安装jenkins
+$ sudo apt-get update
+$ sudo apt-get install jenkins
+
+启动jenkins
+sudo service jenkins start
+
+然后登陆8080端口即可出现jenkins的页面。如果没有的话就是8080端口被占用，
+我们需要修改其端口
+$ sudo vim /etc/default/jenkins
+#修改如下内容
+HTTP_PORT=8085
+#重启jenkins服务
+$ sudo /etc/init.d/jenkins restart
+
+首次进入jenkins如要输入密码，密码位置：/var/lib/jenkins/secrets/initialAdminPassword
+$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+将得到的密码用于页面登陆
+
+插件安装
+点击“Install suggested plugins”，即安装推荐的插件
+
+安装完毕
